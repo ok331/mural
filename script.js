@@ -82,21 +82,51 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-const scrollPrompt = document.querySelector('.scroll-prompt');
+// Handle section visibility
 const graveyardSection = document.querySelector('.graveyard-section');
-let hasRevealed = false;
+const hoaSection = document.querySelector('.hoa-section');
 
-window.addEventListener('scroll', () => {
-    if (hasRevealed) return;
+// Initially hide both sections
+graveyardSection.style.display = 'none';
+hoaSection.style.display = 'none';
 
-    const scrollPosition = window.scrollY + window.innerHeight;
-    const triggerPosition = scrollPrompt.offsetTop + (window.innerHeight / 2);
-
-    if (scrollPosition > triggerPosition) {
-        hasRevealed = true;
-        scrollPrompt.classList.add('hidden');
-        setTimeout(() => {
-            graveyardSection.classList.add('visible');
-        }, 300);
-    }
+// Handle smooth scrolling and section visibility for navigation
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        
+        if (targetId === '#memoriam') {
+            graveyardSection.style.display = 'block';
+            setTimeout(() => {
+                graveyardSection.classList.add('visible');
+            }, 50);
+            
+            const offset = 60; // Height of the navigation bar
+            const targetPosition = graveyardSection.offsetTop + window.pageYOffset - offset;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        } else if (targetId === '#hoa') {
+            hoaSection.style.display = 'block';
+            setTimeout(() => {
+                hoaSection.classList.add('visible');
+            }, 50);
+            
+            const offset = 60;
+            const targetPosition = hoaSection.offsetTop + window.pageYOffset - offset;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        } else if (targetId === '#home') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    });
 }); 
