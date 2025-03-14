@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 2rem 0;
+}
+
+.ascii-art {
+    font-family: monospace;
+    white-space: pre;
+    display: inline-block;
+    color: #ffffff;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.members-section {
+    margin-bottom: 2rem;
+    margin-top: -2rem;
+}
+
+.graveyard-section {
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.graveyard-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.graveyard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.member-card, .grave-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 2rem 1.5rem 3.5rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.member-card:hover, .grave-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.profile-pic, .grave-pic {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.profile-pic img, .grave-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #1a1a1a;
+}
+
+.grave-pic {
+    filter: grayscale(100%);
+}
+
+.overlay-icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+h3 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.memorial-text {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.graveyard-section h2 i {
+    margin: 0 10px;
+    color: #ff6b6b;
+}
+
+.discord-icon {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.discord-icon i {
+    font-size: 1.2rem;
+    color: #7289da;
+    transition: all 0.3s ease;
+}
+
+.discord-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(32, 34, 37, 0.9);
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    z-index: 1000;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    font-size: 0.9rem;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .ascii-art {
+        font-size: 10px;
+    }
+
+    .members-grid, .graveyard-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+    }
+
+    .profile-pic, .grave-pic {
+        width: 60px;
+        height: 60px;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .member-card, .grave-card {
+        padding: 1.5rem 1rem 2.8rem 1rem;
+    }
+
+    .discord-icon {
+        bottom: 10px;
+    }
+
+    .discord-icon i {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .graveyard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.enter-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.enter-text {
+    color: #ffffff;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.enter-screen:hover .enter-text {
+    opacity: 1;
+}
+
+.enter-button {
+    display: none;
+}
+
+.error-page {
+    min-height: 100vh;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: monospace;
+}
+
+.error-message {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.error-link {
+    color: #7289da;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #7289da;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.error-link:hover {
+    background: #7289da;
+    color: #000000;
+}
+
+.quote {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.scroll-prompt {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    padding: 0;
+    margin-bottom: 6rem;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    position: relative;
+}
+
+.scroll-prompt.hidden {
+    opacity: 0;
+}
+
+.scroll-prompt i {
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+} 
